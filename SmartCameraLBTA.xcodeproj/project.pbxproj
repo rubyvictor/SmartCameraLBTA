@@ -13,6 +13,7 @@
 		B1FC9B291F1BA98300D5811A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1FC9B281F1BA98300D5811A /* Assets.xcassets */; };
 		B1FC9B2C1F1BA98300D5811A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1FC9B2A1F1BA98300D5811A /* LaunchScreen.storyboard */; };
 		B1FC9B341F1BB82A00D5811A /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9B331F1BB82A00D5811A /* SqueezeNet.mlmodel */; };
+		B1FC9B361F1BBE6900D5811A /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9B351F1BBE6900D5811A /* Resnet50.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B1FC9B2B1F1BA98300D5811A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1FC9B2D1F1BA98300D5811A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1FC9B331F1BB82A00D5811A /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = SqueezeNet.mlmodel; path = ../../Downloads/SqueezeNet.mlmodel; sourceTree = "<group>"; };
+		B1FC9B351F1BBE6900D5811A /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Resnet50.mlmodel; path = ../../Downloads/Resnet50.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				B1FC9B211F1BA98300D5811A /* AppDelegate.swift */,
 				B1FC9B231F1BA98300D5811A /* ViewController.swift */,
+				B1FC9B351F1BBE6900D5811A /* Resnet50.mlmodel */,
 				B1FC9B331F1BB82A00D5811A /* SqueezeNet.mlmodel */,
 				B1FC9B251F1BA98300D5811A /* Main.storyboard */,
 				B1FC9B281F1BA98300D5811A /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			files = (
 				B1FC9B241F1BA98300D5811A /* ViewController.swift in Sources */,
 				B1FC9B341F1BB82A00D5811A /* SqueezeNet.mlmodel in Sources */,
+				B1FC9B361F1BBE6900D5811A /* Resnet50.mlmodel in Sources */,
 				B1FC9B221F1BA98300D5811A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +277,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_TEAM = E26925RH2T;
 				INFOPLIST_FILE = SmartCameraLBTA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -287,6 +292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_TEAM = E26925RH2T;
 				INFOPLIST_FILE = SmartCameraLBTA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
