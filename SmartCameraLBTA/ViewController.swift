@@ -47,8 +47,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
             if let error = error {
                 print("Failed to request", error)
-                print(finishedRequest.results as Any)
+                return
             }
+            print(finishedRequest.results as Any)
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         
