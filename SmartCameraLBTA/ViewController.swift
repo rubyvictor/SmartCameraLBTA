@@ -50,6 +50,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 return
             }
             print(finishedRequest.results as Any)
+            
+            guard let results = finishedRequest.results as? [VNClassificationObservation] else { return }
+            guard let firstObservation = results.first else { return }
+            
+            print(firstObservation.identifier, firstObservation.confidence)
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         
