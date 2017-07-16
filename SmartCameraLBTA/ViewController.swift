@@ -8,8 +8,9 @@
 
 import UIKit
 import AVKit
+import Vision
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,32 @@ class ViewController: UIViewController {
         view.layer.addSublayer(previewLayer)
         // Add Frame
         previewLayer.frame = view.frame
+        
+        // Instantiate dataOutput and conform to AVCaptureVideoOutputSampleBufferDelegate
+        let dataOutput = AVCaptureVideoDataOutput()
+        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+        captureSession.addOutput(dataOutput)
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // Implement didOutput method that runs everytime the camera captures a frame and renders it inside the previewLayer
+    // First import the SqueezeNet model before accessing the VNCoreMLModel and parsing into the request
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        //        print("Camera was able to capture a frame", Date())
+        
+        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        guard let model = try? VNCoreMLModel(for: SqueezeNet().model) else { return }
+        let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
+            if let error = error {
+                print("Failed to request", error)
+                print(finishedRequest.results as Any)
+            }
+        }
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        
+        
     }
-
-
+    
 }
 
