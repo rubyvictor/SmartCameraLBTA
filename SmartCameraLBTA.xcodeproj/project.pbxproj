@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B178D0AC1F1CD70E00085436 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B178D0AB1F1CD70D00085436 /* Inceptionv3.mlmodel */; };
 		B1FC9B221F1BA98300D5811A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9B211F1BA98300D5811A /* AppDelegate.swift */; };
 		B1FC9B241F1BA98300D5811A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9B231F1BA98300D5811A /* ViewController.swift */; };
 		B1FC9B271F1BA98300D5811A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1FC9B251F1BA98300D5811A /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B178D0AB1F1CD70D00085436 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../Downloads/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		B1FC9B1E1F1BA98300D5811A /* SmartCameraLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartCameraLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FC9B211F1BA98300D5811A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1FC9B231F1BA98300D5811A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				B1FC9B211F1BA98300D5811A /* AppDelegate.swift */,
 				B1FC9B231F1BA98300D5811A /* ViewController.swift */,
 				B1FC9B351F1BBE6900D5811A /* Resnet50.mlmodel */,
+				B178D0AB1F1CD70D00085436 /* Inceptionv3.mlmodel */,
 				B1FC9B331F1BB82A00D5811A /* SqueezeNet.mlmodel */,
 				B1FC9B251F1BA98300D5811A /* Main.storyboard */,
 				B1FC9B281F1BA98300D5811A /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B178D0AC1F1CD70E00085436 /* Inceptionv3.mlmodel in Sources */,
 				B1FC9B241F1BA98300D5811A /* ViewController.swift in Sources */,
 				B1FC9B341F1BB82A00D5811A /* SqueezeNet.mlmodel in Sources */,
 				B1FC9B361F1BBE6900D5811A /* Resnet50.mlmodel in Sources */,
@@ -322,6 +326,7 @@
 				B1FC9B321F1BA98300D5811A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

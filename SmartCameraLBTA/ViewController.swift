@@ -20,6 +20,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
        return label
     }()
     
+    func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
+        layer.videoOrientation = orientation
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +38,27 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         view.layer.addSublayer(previewLayer)
+        
         // Add Frame
-        previewLayer.frame = view.frame
+        previewLayer.frame = self.view.bounds
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        
+        if let connection = previewLayer.connection {
+            let currentDevice: UIDevice = UIDevice.current
+            let orientation: UIDeviceOrientation = currentDevice.orientation
+            let previewLayerConnection: AVCaptureConnection = connection
+            if previewLayerConnection.isVideoOrientationSupported {
+                switch (orientation) {
+                case .portrait: updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
+                case .portraitUpsideDown: updatePreviewLayer(layer: previewLayerConnection, orientation: .portraitUpsideDown)
+                case .landscapeLeft: updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeLeft)
+                case .landscapeRight: updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeRight)
+                default: updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
+                    break
+                }
+            }
+        }
+        
         
         // Instantiate dataOutput and conform to AVCaptureVideoOutputSampleBufferDelegate
         let dataOutput = AVCaptureVideoDataOutput()
@@ -46,12 +68,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         setupIdentifierConfidenceLabel()
     }
     
+    
     fileprivate func setupIdentifierConfidenceLabel() {
-        view.addSubview(identifierLabel)
-        identifierLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
-        identifierLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        identifierLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        identifierLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            view.addSubview(identifierLabel)
+            identifierLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
+            identifierLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+            identifierLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+            identifierLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     // Implement didOutput method that runs everytime the camera captures a frame and renders it inside the previewLayer
@@ -61,7 +84,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         //        print("Camera was able to capture a frame", Date())
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
         let request = VNCoreMLRequest(model: model) { (finishedRequest, error) in
             if let error = error {
                 print("Failed to request", error)
